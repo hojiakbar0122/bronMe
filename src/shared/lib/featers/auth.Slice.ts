@@ -2,7 +2,7 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 
 interface IState{
     token:string | null
-    user:any
+    user: unknown
 }
 
 const initialState:IState = {

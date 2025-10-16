@@ -1,19 +1,17 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Home, Grid3X3, RotateCcw, CreditCard, User } from 'lucide-react';
 
-interface BottomNavigationProps {
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
-}
-
-const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab, setActiveTab }) => {
+const BottomNavigation: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems = [
-    { id: 'home', label: 'Asosiy', icon: Home },
-    { id: 'categories', label: 'Kategoriya', icon: Grid3X3 },
-    { id: 'reels', label: 'Reels up', icon: RotateCcw },
-    { id: 'orders', label: 'Bandlov', icon: CreditCard },
-    { id: 'profile', label: 'Profil', icon: User },
+    { id: 'home', label: 'Asosiy', icon: Home, path: '/' },
+    { id: 'categories', label: 'Kategoriya', icon: Grid3X3, path: '/categories' },
+    { id: 'reels', label: 'Reels up', icon: RotateCcw, path: '/reels' },
+    { id: 'orders', label: 'Bandlov', icon: CreditCard, path: '/orders' },
+    { id: 'profile', label: 'Profil', icon: User, path: '/profile' },
   ];
 
   return (
@@ -21,12 +19,12 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab, setActiv
       <div className="flex items-center justify-around py-2 overflow-x-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = activeTab === item.id;
-          
+          const isActive = location.pathname === item.path;
+
           return (
             <button
               key={item.id}
-              onClick={() => setActiveTab(item.id)}
+              onClick={() => navigate(item.path)}
               className={`flex flex-col items-center py-2 px-3 min-w-0 flex-1 transition-colors duration-200 ${
                 isActive ? 'text-blue-600' : 'text-gray-400'
               }`}

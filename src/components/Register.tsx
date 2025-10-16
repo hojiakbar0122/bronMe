@@ -18,10 +18,10 @@ const Register = () => {
   // const dispatch = useDispatch()
 
   const register = useMutation({
-        mutationFn:(data:any)=>api.post("auth/register", data)
+        mutationFn:(data: FieldType)=>api.post("auth/register", data)
   })
 
-  const onFinish: FormProps<FieldType>["onFinish"] = (data:any)=>{
+  const onFinish: FormProps<FieldType>["onFinish"] = (data: FieldType)=>{
       register.mutate(data, {
            onSuccess: () => {
       console.log("Register success:", data);

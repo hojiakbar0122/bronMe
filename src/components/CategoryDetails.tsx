@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Bell, User, Search, Heart, MapPin, Star } from 'lucide-react';
 
 interface CategoryDetailsProps {
   categoryName: string;
-  onBack: () => void;
 }
 
-const CategoryDetails: React.FC<CategoryDetailsProps> = ({ categoryName, onBack }) => {
+const CategoryDetails: React.FC<CategoryDetailsProps> = ({ categoryName }) => {
+  const navigate = useNavigate();
   const [likedBusinesses, setLikedBusinesses] = useState<number[]>([1, 4]);
 
   const businesses = [
@@ -71,8 +72,8 @@ const CategoryDetails: React.FC<CategoryDetailsProps> = ({ categoryName, onBack 
         <header className="bg-white px-4 py-3 border-b border-gray-100">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <button 
-                onClick={onBack}
+              <button
+                onClick={() => navigate(-1)}
                 className="p-1 hover:bg-gray-100 rounded-full transition-colors"
               >
                 <ArrowLeft className="w-6 h-6 text-gray-700" />

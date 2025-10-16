@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import { 
   MapPin, 
   Phone, 
@@ -16,7 +16,6 @@ import {
 } from 'lucide-react';
 
 const Profile = () => {
-  const [activeTab, setActiveTab] = useState('profile');
 
   const menuItems = [
     { id: 'bookings', label: 'Mening bandlovlarim', icon: Calendar, badge: '3' },
@@ -27,12 +26,12 @@ const Profile = () => {
     { id: 'help', label: 'Yordam', icon: HelpCircle, badge: null },
   ];
 
-  const achievements = [
-    { id: 1, title: 'Dastlabki bandlov', description: 'Birinchi bandlovingizni amalga oshirdingiz', earned: true },
-    { id: 2, title: 'Faol foydalanuvchi', description: '10 ta bandlov amalga oshirdingiz', earned: true },
-    { id: 3, title: 'Fikr bildiruvchi', description: '5 ta sharh yozdingiz', earned: false },
-    { id: 4, title: 'Ishonchli mijoz', description: '50 ta bandlov amalga oshirdingiz', earned: false }
-  ];
+  // const achievements = [
+  //   { id: 1, title: 'Dastlabki bandlov', description: 'Birinchi bandlovingizni amalga oshirdingiz', earned: true },
+  //   { id: 2, title: 'Faol foydalanuvchi', description: '10 ta bandlov amalga oshirdingiz', earned: true },
+  //   { id: 3, title: 'Fikr bildiruvchi', description: '5 ta sharh yozdingiz', earned: false },
+  //   { id: 4, title: 'Ishonchli mijoz', description: '50 ta bandlov amalga oshirdingiz', earned: false }
+  // ];
 
   return (
     <div className="py-6">

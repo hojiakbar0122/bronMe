@@ -12,18 +12,14 @@ type FieldType = {
   password?: string;
 };
 
-interface Login {
-  onLogin: () => void;
-}
-
-const Login:React.FC<Login> = () => {
+const Login:React.FC = () => {
 
   const navigate = useNavigate()
   const initialValue = useSelector((state:RootState)=>state.signInSlice)
   const dispatch = useDispatch()
 
     const signIn = useMutation({
-        mutationFn:(data:any)=>api.post("auth/login", data)
+        mutationFn:(data: FieldType)=>api.post("auth/login", data)
     })
 
    const onFinish: FormProps<FieldType>["onFinish"] = (values)=>{

@@ -15,7 +15,7 @@ const Otp: React.FC = () => {
     const navigate = useNavigate()
 
     const sendOtp = useMutation({
-        mutationFn:(data:any)=>api.post("auth/verify-email", data)
+        mutationFn:(data: {code: string, phone: string})=>api.post("auth/verify-email", data)
     })
 
     const onChange: OTPProps['onChange'] = (code) => {

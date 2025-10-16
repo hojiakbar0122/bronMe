@@ -18,7 +18,7 @@ const SendOtpPage: React.FC = () => {
   const navigate = useNavigate()
 
 
-  const onFinish = async (values: any) => {
+  const onFinish = async (values: { phone: string; prefix: string }) => {
     try {
       setLoading(true);
       const phoneNumber = values.prefix + values.phone;
@@ -26,7 +26,7 @@ const SendOtpPage: React.FC = () => {
       // backendga yuborish
       const res = await api.post("/api/auth/send-otp", {
         phone: phoneNumber,
-      });
+      } as { phone: string });
 
       if (res.status === 200) {
         message.success("OTP yuborildi!");
@@ -36,8 +36,9 @@ const SendOtpPage: React.FC = () => {
         // navigate("/verify-otp") qilsangiz ham bo‘ladi
       }
       
-    } catch (error: any) {
-      message.error(error?.response?.data?.message || "Xatolik yuz berdi");
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      message.error(err?.response?.data?.message || "Xatolik yuz berdi");
     } finally {
       setLoading(false);
     }

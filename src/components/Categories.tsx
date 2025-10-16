@@ -1,11 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Scissors, Stethoscope, Coffee, Utensils, PartyPopper, Mic, Gamepad2, Heart, Bell, User } from 'lucide-react';
 
-interface CategoriesProps {
-  onCategorySelect: (categoryName: string) => void;
-}
-
-const Categories: React.FC<CategoriesProps> = ({ onCategorySelect }) => {
+const Categories: React.FC = () => {
+  const navigate = useNavigate();
   const [selectedGender, setSelectedGender] = useState('Erkak');
   const [showGenderDropdown, setShowGenderDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -102,7 +100,7 @@ const Categories: React.FC<CategoriesProps> = ({ onCategorySelect }) => {
             <div
               key={category.id}
               className="bg-white rounded-3xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer group"
-              onClick={() => onCategorySelect(category.name)}
+              onClick={() => navigate(`/category/${category.name}`)}
             >
               <div className={`w-16 h-16 rounded-2xl ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                 <Icon className={`w-8 h-8 ${category.iconColor}`} />

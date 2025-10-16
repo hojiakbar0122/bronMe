@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Story {
   id: number;
@@ -7,11 +8,8 @@ interface Story {
   isViewed: boolean;
 }
 
-interface StoryCarouselProps {
-  onStoryClick: () => void;
-}
-
-const StoryCarousel: React.FC<StoryCarouselProps> = ({ onStoryClick }) => {
+const StoryCarousel: React.FC = () => {
+  const navigate = useNavigate();
   const stories: Story[] = [
     {
       id: 1,
@@ -45,7 +43,7 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({ onStoryClick }) => {
         {stories.map((story) => (
           <button
             key={story.id}
-            onClick={onStoryClick}
+            onClick={() => navigate('/stories')}
             className="flex-shrink-0 text-center group"
           >
             <div className={`relative w-16 h-16 rounded-full p-0.5 ${

@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Bell, Search, ChevronDown, MapPin, Clock, Phone, Globe, Grid3X3, Bookmark, Heart } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowLeft, Bell, Search, ChevronDown, MapPin, Grid3X3, Bookmark, Heart } from 'lucide-react';
 
-interface BusinessProfileProps {
-  onBack: () => void;
-}
-
-const BusinessProfile: React.FC<BusinessProfileProps> = ({ onBack }) => {
+const BusinessProfile: React.FC = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('posts');
   const [isFollowing, setIsFollowing] = useState(false);
 
@@ -50,8 +48,8 @@ const BusinessProfile: React.FC<BusinessProfileProps> = ({ onBack }) => {
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-100">
         <div className="flex items-center space-x-3">
-          <button 
-            onClick={onBack}
+          <button
+            onClick={() => navigate(-1)}
             className="p-1 hover:bg-gray-100 rounded-full transition-colors"
           >
             <ArrowLeft className="w-6 h-6 text-gray-700" />
