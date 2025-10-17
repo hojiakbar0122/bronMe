@@ -21,19 +21,22 @@ const SendOtpPage: React.FC = () => {
   const onFinish = async (values: { phone: string; prefix: string }) => {
     try {
       setLoading(true);
-      const phoneNumber = values.prefix + values.phone;
+      const phoneNumber = values.prefix + " " + values.phone;
 
       // backendga yuborish
-      const res = await api.post("/api/auth/send-otp", {
+      console.log(phoneNumber);
+      const res = await api.post("/users/send-otp", {
         phone: phoneNumber,
       } as { phone: string });
+      
 
       if (res.status === 200) {
         message.success("OTP yuborildi!");
+        console.log("done!");
         const encode = btoa(phoneNumber)
         // onSuccess(encode)
-        navigate(`/otp?e=${encode}`)
-        // navigate("/verify-otp") qilsangiz ham bo‘ladi
+        navigate(`/verify-otp?e=${encode}`)
+        // navigate("/verify-otp")
       }
       
     } catch (error: unknown) {
