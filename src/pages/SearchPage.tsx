@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import Search from '../components/Search';
 
 function SearchPage() {
-  return <Search onBack={() => {}} />;
+  const navigate = useNavigate();
+  return <Search onBack={() => navigate(-1)} />;
 }
 
 export default SearchPage;

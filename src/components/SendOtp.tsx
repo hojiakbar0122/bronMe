@@ -18,24 +18,30 @@ const SendOtpPage: React.FC = () => {
   const navigate = useNavigate()
 
 
-  const onFinish = async (values: { phone: string; prefix: string }) => {
+  const onFinish = async (values: { phone_number: string; prefix: string }) => {
     try {
       setLoading(true);
-      const phoneNumber = values.prefix + " " + values.phone;
+      console.log("val", values);
+      
+      const phoneNumber = values.prefix + values.phone_number;
 
       // backendga yuborish
-      console.log(phoneNumber);
-      const res = await api.post("/users/send-otp", {
-        phone: phoneNumber,
-      } as { phone: string });
+      console.log("num", phoneNumber);
+      // navigate("/auth?type=register");
+      // navigate("/register")
+      const res = await api.post("/users/send-otp/", {
+        phone_number: phoneNumber,
+      } as { phone_number: string });
       
 
       if (res.status === 200) {
         message.success("OTP yuborildi!");
         console.log("done!");
+        console.log("done!", );
         const encode = btoa(phoneNumber)
         // onSuccess(encode)
-        navigate(`/verify-otp?e=${encode}`)
+      navigate(`/auth?type=otp&e=${encode}`);
+        // navigate(`/otp?e=${encode}`)
         // navigate("/verify-otp")
       }
       
@@ -52,7 +58,7 @@ const SendOtpPage: React.FC = () => {
       <Card title="Telefon raqamni tasdiqlash" className="w-[400px]">
         <Form layout="vertical" onFinish={onFinish}>
           <Form.Item
-            name="phone"
+            name="phone_number"
             label="Telefon raqam"
             rules={[{ required: true, message: "Telefon raqamni kiriting!" }]}
           >

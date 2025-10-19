@@ -5,8 +5,8 @@ import  authSlice  from "../shared/lib/featers/auth.Slice";
 export const store = configureStore({
     reducer:{
         // fake:()=>"nabi",
-        signInSlice,
-        authSlice
+        signin: signInSlice,
+        auth: authSlice
     }
 })
 

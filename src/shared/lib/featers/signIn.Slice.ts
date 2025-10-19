@@ -2,12 +2,12 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 
 interface IState{
     email:string
-    passowrd:string
+    password:string
 }
 
 const initialState:IState = {
     email:"",
-    passowrd:""
+    password:""
 }
 
 export const signInSlice = createSlice({
@@ -16,11 +16,11 @@ export const signInSlice = createSlice({
     reducers:{
         setSignInData:(state, action:PayloadAction<IState>)=>{
             state.email = action.payload.email
-            state.passowrd = action.payload.passowrd
+            state.password = action.payload.password
         },
         clearSignInData:(state)=>{
             state.email = ""
-            state.passowrd = ""
+            state.password = ""
         }
     }
 })

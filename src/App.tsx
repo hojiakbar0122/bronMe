@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import BottomNavigation from './components/BottomNavigation';
 import HomePage from './pages/HomePage';
@@ -13,14 +13,16 @@ import NotificationsPage from './pages/NotificationsPage';
 import SearchPage from './pages/SearchPage';
 import StoriesPage from './pages/StoriesPage';
 import BusinessProfilePage from './pages/BusinessProfilePage';
+import Login from './components/Login';
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate()
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (!token && location.pathname !== '/auth') {
-      window.location.href = '/auth';
+    if (!token && location.pathname !== '/login' && location.pathname !== '/auth') {
+      navigate('/login');
     }
   }, [location]);
 
@@ -37,6 +39,7 @@ function App() {
         <main className="px-4">
           <Routes>
             <Route path="/auth" element={<AuthPage />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/reels" element={<ReelsPage />} />

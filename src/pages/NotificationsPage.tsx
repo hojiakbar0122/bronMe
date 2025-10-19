@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import Notifications from '../components/Notifications';
 
 function NotificationsPage() {
-  return <Notifications onBack={() => {}} />;
+  const navigate = useNavigate();
+  return <Notifications onBack={() => navigate(-1)} />;
 }
 
 export default NotificationsPage;
