@@ -13,8 +13,33 @@ import {
   Calendar,
   CreditCard
 } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { removeToken } from '../shared/lib/featers/auth.Slice';
+import { Modal } from 'antd';
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+
+const { confirm } = Modal;
 
 const Profile = () => {
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+
+     confirm({
+      title: "Chiqmoqchimisiz?",
+      icon: <ExclamationCircleOutlined />,
+      content: "Bu amal sizni tizimdan chiqaradi.",
+      okText: "Ha, chiqaman",
+      cancelText: "Bekor qilish",
+      onOk() {
+        dispatch(removeToken());
+        navigate("/login")
+      },
+    });
+  };
 
   const menuItems = [
     { id: 'bookings', label: 'Mening bandlovlarim', icon: Calendar, badge: '3' },
@@ -33,7 +58,7 @@ const Profile = () => {
   // ];
 
   return (
-    <div className="py-6">
+    <div className="py-6 pb-24">
       {/* Profile Header */}
       <div className="bg-white rounded-2xl p-6 mb-6 border border-gray-100">
         <div className="flex items-center space-x-4 mb-6">
@@ -62,10 +87,10 @@ const Profile = () => {
                 <Phone className="w-4 h-4 mr-1" />
                 <span>+998 90 123 45 67</span>
               </div>
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <Mail className="w-4 h-4 mr-1" />
                 <span>aziza@example.com</span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -103,8 +128,10 @@ const Profile = () => {
       </div>
 
       {/* Logout Button */}
-      <button className="w-full bg-white rounded-2xl p-4 border border-gray-100 flex items-center justify-center space-x-2 text-red-600 hover:bg-red-50 transition-colors">
-        <LogOut className="w-5 h-5" />
+      <button
+        onClick={handleLogout} 
+        className="w-full bg-white rounded-2xl p-4 border border-gray-100 flex items-center justify-center space-x-2 text-red-600 hover:bg-red-50 transition-colors logout-btn">
+        <LogOut className="w-5 h-5 text-red-600 stroke-current" />
         <span className="font-medium">Chiqish</span>
       </button>
     </div>

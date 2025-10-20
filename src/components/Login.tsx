@@ -76,7 +76,7 @@ const Login: React.FC = () => {
         </Form.Item>
 
         <Form.Item style={{ marginTop: 20 }}>
-          <Button type="primary" htmlType="submit" className="w-full">
+          <Button type="primary" htmlType="submit" className="w-full" loading={signIn.isPending}>
             Kirish
           </Button>
         </Form.Item>
